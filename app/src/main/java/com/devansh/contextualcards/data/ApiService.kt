@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET
-    fun fetchCardGroups (): Single<List<CardGroup>>
+    fun fetchCardGroups(): Single<List<CardGroup>>
 }
