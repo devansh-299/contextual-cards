@@ -14,11 +14,16 @@ data class CardGroup(
     @SerializedName("is_scrollable")
     val isScrollable: Boolean
 ) {
-    enum class DesignType(val type: String) {
-        SMALL_DISPLAY_CARD("HC1"),
-        BIG_DISPLAY_CARD("HC3"),
-        CENTER_CARD("HC4"),
-        IMAGE_CARD("HC5"),
-        SMALL_CARD_WITH_ARROW("HC6")
+    enum class DesignType {
+        @SerializedName("HC1")
+        SMALL_DISPLAY_CARD,
+        @SerializedName("HC3")
+        BIG_DISPLAY_CARD,
+        @SerializedName("HC4")
+        CENTER_CARD,
+        @SerializedName("HC5")
+        IMAGE_CARD,
+        @SerializedName("HC6")
+        SMALL_CARD_WITH_ARROW
     }
 }

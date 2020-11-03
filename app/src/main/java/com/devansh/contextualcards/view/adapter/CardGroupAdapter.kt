@@ -31,7 +31,7 @@ class CardGroupAdapter(private val context: Context)
     }
 
     private fun cardView(holder: CardViewHolder, position: Int) {
-        val cardAdapter = CardAdapter()
+        val cardAdapter = CardAdapter(groupData[position].designType)
         holder.recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = cardAdapter
