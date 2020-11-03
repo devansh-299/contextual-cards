@@ -3,12 +3,12 @@ package com.devansh.contextualcards.model
 import com.google.gson.annotations.SerializedName
 
 data class CardGroup(
-    val id: Int,
+    val id: Long,
     val name: String,
     @SerializedName("design_type")
     val designType: DesignType,
     @SerializedName("card_type")
-    val cardType: String,
+    val cardType: Long,
     @SerializedName("cards")
     val cardList: List<Card>,
     @SerializedName("is_scrollable")

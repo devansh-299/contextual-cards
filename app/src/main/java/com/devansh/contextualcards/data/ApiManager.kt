@@ -6,12 +6,13 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class ApiManager {
 
     val apiService: ApiService
 
     companion object {
-        private const val BASE_URL: String = "http://www.mocky.io/v2/5ed79368320000a0cc27498b"
+        private const val BASE_URL: String = "http://www.mocky.io/v2/"
         private var apiManager: ApiManager? = null
 
         val instance: ApiManager
@@ -26,6 +27,7 @@ class ApiManager {
     init {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
+
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
@@ -36,6 +38,7 @@ class ApiManager {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
         apiService = retrofit.create(ApiService::class.java)
     }
 }

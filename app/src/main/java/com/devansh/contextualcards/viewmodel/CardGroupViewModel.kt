@@ -14,9 +14,10 @@ import java.util.concurrent.TimeoutException
 
 
 class CardGroupViewModel : ViewModel() {
-    private var tag = CardGroupViewModel::class.java.simpleName
+    private val tag = CardGroupViewModel::class.java.simpleName
     private val repository: Repository = Repository()
     val successfulFetch: MutableLiveData<Boolean> = MutableLiveData()
+
     lateinit var cardGroups: List<CardGroup>
     lateinit var errorMessage: String
 
@@ -28,6 +29,7 @@ class CardGroupViewModel : ViewModel() {
                 override fun onSuccess(groups: List<CardGroup>) {
                     cardGroups = groups
                     successfulFetch.value = true
+                    Log.d(tag, "API call successful")
                 }
 
                 override fun onError(throwable: Throwable) {

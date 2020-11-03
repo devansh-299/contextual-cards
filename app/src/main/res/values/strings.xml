@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ContextualCards</string>
+    <string name="action">Action</string>
 </resources>
