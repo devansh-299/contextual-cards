@@ -1,7 +1,8 @@
-package com.devansh.contextualcards
+package com.devansh.contextualcards.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.devansh.contextualcards.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
