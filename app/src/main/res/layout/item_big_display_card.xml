@@ -39,9 +39,7 @@
             android:background="@drawable/rounded_button_background"
             android:text="@string/action"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
