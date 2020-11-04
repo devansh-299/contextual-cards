@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    android:id="@+id/cc_card_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cc_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/value_5dp"
@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:padding="@dimen/value_20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/value_20dp">
 
         <ImageView
             android:id="@+id/cc_iv_icon"
@@ -44,26 +44,34 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-            <Button
-                android:id="@+id/cc_bt_action_first"
+            <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button_background"
-                android:text="@string/action"
                 android:layout_marginEnd="@dimen/value_20dp"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                app:cardCornerRadius="@dimen/value_10dp">
 
-            <Button
-                android:id="@+id/cc_bt_action_second"
+                <Button
+                    android:id="@+id/cc_bt_action_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button_background"
-                android:text="@string/action"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/value_10dp">
+
+                <Button
+                    android:id="@+id/cc_bt_action_second"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

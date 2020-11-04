@@ -61,6 +61,7 @@ class CardGroupViewModel : ViewModel() {
             })
     }
 
+    // TODO: do this task in back-ground thread
     private fun getFilteredList(groups: List<CardGroup>): List<CardGroup> {
         val filteredList = ArrayList<CardGroup>()
         for(group in groups) {

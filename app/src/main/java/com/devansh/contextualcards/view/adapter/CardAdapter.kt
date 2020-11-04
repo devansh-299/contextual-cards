@@ -1,11 +1,14 @@
 package com.devansh.contextualcards.view.adapter
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.devansh.contextualcards.ContextualCardApplication
 import com.devansh.contextualcards.R
 import com.devansh.contextualcards.model.Card
 import com.devansh.contextualcards.model.CardGroup
@@ -21,8 +24,9 @@ import kotlinx.android.synthetic.main.menu_long_press.view.*
 
 
 @Suppress("DEPRECATION")
-class CardAdapter(private val designType: CardGroup.DesignType, private val groupId: Long)
-    : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardAdapter(
+    private val designType: CardGroup.DesignType,
+    private val groupId: Long) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     private var cardData: ArrayList<Card> = ArrayList()
     private val SHOW_MENU = 1
@@ -148,6 +152,27 @@ class CardAdapter(private val designType: CardGroup.DesignType, private val grou
             card.bgImage?.imageUrl?.let {
                 ImageHelper.loadImage(it, itemView, itemView.bdc_card_view)
             }
+
+            card.ctaList?.get(0)?.let {cta ->
+                itemView.bdc_bt_action.setBackgroundColor(Color.parseColor(cta.bgColor))
+                itemView.bdc_bt_action.text = cta.text
+                itemView.bdc_bt_action.setTextColor(Color.parseColor(cta.textColor))
+                itemView.bdc_bt_action.setOnClickListener {
+                    if (cta.url != null) {
+                        launchAction(cta.url)
+                    } else if (cta.otherUrl != null) {
+                        launchAction(cta.otherUrl)
+                    }
+                }
+            }
+        }
+
+        private fun launchAction(url: String): Boolean {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
+            ContextualCardApplication.getContext().startActivity(intent)
+            return true
         }
 
         fun bindSmallCardArrow(card: Card) {
@@ -157,11 +182,22 @@ class CardAdapter(private val designType: CardGroup.DesignType, private val grou
             card.icon?.imageUrl?.let {
                 ImageHelper.loadImage(it, itemView, itemView.sca_iv_icon)
             }
+            itemView.sca_card_view.setOnClickListener {
+                if (card.url != null) {
+                    launchAction(card.url)
+                }
+            }
         }
 
         fun bindImageCard(card: Card) {
             card.bgImage?.imageUrl?.let {
                 ImageHelper.loadImage(it, itemView, itemView.ic_card_view)
+            }
+
+            itemView.ic_card_view.setOnClickListener {
+                if (card.url != null) {
+                    launchAction(card.url)
+                }
             }
         }
 
@@ -180,6 +216,32 @@ class CardAdapter(private val designType: CardGroup.DesignType, private val grou
             card.icon?.imageUrl?.let {
                 ImageHelper.loadImage(it, itemView, itemView.cc_iv_icon)
             }
+
+            card.ctaList?.get(0)?.let {cta ->
+                itemView.cc_bt_action_first.setBackgroundColor(Color.parseColor(cta.bgColor))
+                itemView.cc_bt_action_first.text = cta.text
+                itemView.cc_bt_action_first.setTextColor(Color.parseColor(cta.textColor))
+                itemView.cc_bt_action_first.setOnClickListener {
+                    if (cta.url != null) {
+                        launchAction(cta.url)
+                    } else if (cta.otherUrl != null) {
+                        launchAction(cta.otherUrl)
+                    }
+                }
+            }
+
+            card.ctaList?.get(1)?.let {cta ->
+                itemView.cc_bt_action_second.setBackgroundColor(Color.parseColor(cta.bgColor))
+                itemView.cc_bt_action_second.text = cta.text
+                itemView.cc_bt_action_second.setTextColor(Color.parseColor(cta.textColor))
+                itemView.cc_bt_action_second.setOnClickListener {
+                    if (cta.url != null) {
+                        launchAction(cta.url)
+                    } else if (cta.otherUrl != null) {
+                        launchAction(cta.otherUrl)
+                    }
+                }
+            }
         }
 
         fun bindSmallCard(card: Card) {
@@ -193,6 +255,12 @@ class CardAdapter(private val designType: CardGroup.DesignType, private val grou
 
             card.icon?.imageUrl?.let {
                 ImageHelper.loadImage(it, itemView, itemView.sdc_iv_icon)
+            }
+
+            itemView.sdc_card_view.setOnClickListener {
+                if (card.url != null) {
+                    launchAction(card.url)
+                }
             }
         }
 
