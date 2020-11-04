@@ -10,6 +10,7 @@ import com.devansh.contextualcards.R
 import com.devansh.contextualcards.model.Card
 import com.devansh.contextualcards.model.CardGroup
 import com.devansh.contextualcards.util.ImageHelper
+import com.devansh.contextualcards.util.PreferenceHelper
 import com.devansh.contextualcards.util.TextFormatter
 import kotlinx.android.synthetic.main.item_big_display_card.view.*
 import kotlinx.android.synthetic.main.item_center_card.view.*
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.menu_long_press.view.*
 
 
 @Suppress("DEPRECATION")
-class CardAdapter(private val designType: CardGroup.DesignType)
+class CardAdapter(private val designType: CardGroup.DesignType, private val groupId: Long)
     : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     private var cardData: ArrayList<Card> = ArrayList()
@@ -59,6 +60,7 @@ class CardAdapter(private val designType: CardGroup.DesignType)
         if (cardData.size > position) {
             cardData.removeAt(position)
             notifyDataSetChanged()
+            PreferenceHelper.addGroupId(groupId.toString())
         }
         hideMenu()
     }

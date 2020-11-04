@@ -79,5 +79,4 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         err_layout.visibility = View.VISIBLE
         error_layout_tv_message.text = errorMessage
     }
-
 }

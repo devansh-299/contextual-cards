@@ -7,8 +7,9 @@ import com.devansh.contextualcards.ContextualCardApplication
 import com.devansh.contextualcards.R
 import com.devansh.contextualcards.data.Repository
 import com.devansh.contextualcards.model.CardGroup
+import com.devansh.contextualcards.util.PreferenceHelper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.observers.DisposableSingleObserver
+import io.reactivex.rxjava3.observers.DisposableObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.HttpException
 import java.io.IOException
@@ -25,15 +26,14 @@ class CardGroupViewModel : ViewModel() {
 
     fun fetchCards() {
         repository.getCardGroups()
-            .subscribeOn(Schedulers.io())
+        .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableSingleObserver<List<CardGroup>>() {
-                override fun onSuccess(groups: List<CardGroup>) {
-                    cardGroups = groups
+            .subscribeWith(object : DisposableObserver<List<CardGroup>>() {
+                override fun onNext(groups: List<CardGroup>) {
+                    cardGroups = getFilteredList(groups)
                     successfulFetch.value = true
-                    Log.d(tag, "API call successful")
+                    Log.d(tag, "successfully fetched")
                 }
-
                 override fun onError(throwable: Throwable) {
                     when (throwable) {
                         is IOException -> {
@@ -56,7 +56,19 @@ class CardGroupViewModel : ViewModel() {
                     }
                     successfulFetch.value = false
                 }
+
+                override fun onComplete() {}
             })
+    }
+
+    private fun getFilteredList(groups: List<CardGroup>): List<CardGroup> {
+        val filteredList = ArrayList<CardGroup>()
+        for(group in groups) {
+            if (!PreferenceHelper.excludeGroup(group.id.toString())) {
+                filteredList.add(group)
+            }
+        }
+        return filteredList
     }
 
 }
