@@ -15,7 +15,6 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
-
 class CardGroupViewModel : ViewModel() {
     private val tag = CardGroupViewModel::class.java.simpleName
     private val repository: Repository = Repository()
@@ -88,5 +87,4 @@ class CardGroupViewModel : ViewModel() {
         }
         return filteredList
     }
-
 }

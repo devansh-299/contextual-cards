@@ -14,10 +14,9 @@ class Repository {
     /**
      * used to fetch card groups
      *
-     * @return an [Observable] of list of card groups fetched from the API
+     * @return an [Observable] of list of card groups fetched from the API.
      */
     fun getCardGroups(): Observable<List<CardGroup>> {
         return apiManager.apiService.fetchCardGroups()
     }
-
 }

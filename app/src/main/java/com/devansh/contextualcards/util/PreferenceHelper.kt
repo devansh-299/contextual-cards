@@ -43,7 +43,7 @@ object PreferenceHelper {
             if (stringList != null) {
                 for (id in stringList) {
                     if (id == groupId) {
-                        return  true
+                        return true
                     }
                 }
             } else {

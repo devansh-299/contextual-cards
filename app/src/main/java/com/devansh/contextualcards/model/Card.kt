@@ -1,6 +1,6 @@
 package com.devansh.contextualcards.model
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName
 
 data class Card(
     val name: String,

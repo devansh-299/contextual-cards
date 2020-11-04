@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.item_small_card_arrow.view.*
 import kotlinx.android.synthetic.main.item_small_display_card.view.*
 import kotlinx.android.synthetic.main.menu_long_press.view.*
 
-
 /**
  * The inner [RecyclerView] that used to display individual [Card] fetched from the API.
  *
@@ -30,7 +29,6 @@ import kotlinx.android.synthetic.main.menu_long_press.view.*
  * @param groupId used to specify the groupId if in case current group needs to be excluded
  * from being displayed to the user permanently.
  */
-@Suppress("DEPRECATION")
 class CardAdapter(
     private val designType: CardGroup.DesignType,
     private val groupId: Long
@@ -351,10 +349,9 @@ class CardAdapter(
         private fun launchAction(url: String): Boolean {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             ContextualCardApplication.getContext().startActivity(intent)
             return true
         }
-
     }
 }

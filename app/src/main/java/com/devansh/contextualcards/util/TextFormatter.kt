@@ -25,7 +25,9 @@ class TextFormatter {
          */
         fun applyFormattedText(
             formattedText: FormattedText?,
-            textView: TextView, callBackText: String?) {
+            textView: TextView,
+            callBackText: String?
+        ) {
 
             if (formattedText == null) {
                 textView.text = callBackText

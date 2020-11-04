@@ -26,7 +26,8 @@ class ImageHelper {
                     override fun onLoadCleared(placeholder: Drawable?) {}
                     override fun onResourceReady(
                         resource: Drawable,
-                        transition: Transition<in Drawable>?) {
+                        transition: Transition<in Drawable>?
+                    ) {
                         loadInto.background = resource
                     }
                 })
