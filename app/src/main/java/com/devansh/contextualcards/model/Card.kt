@@ -12,7 +12,7 @@ data class Card(
     val formattedDescription: FormattedText? = null,
     val url: String? = null,
     @SerializedName("bg_image")
-    val bgImage: CardImage?= null,
+    val bgImage: CardImage? = null,
     @SerializedName("bg_color")
     val bgColor: String? = null,
     @SerializedName("cta")

@@ -1,20 +1,23 @@
 package com.devansh.contextualcards.data
 
+import com.devansh.contextualcards.data.ApiHelper.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+/**
+ * Singleton that initialises retrofit instance and the dependent API services used by
+ * the application.
+ */
 class ApiManager {
 
     val apiService: ApiService
 
     companion object {
-        private const val BASE_URL: String = "http://www.mocky.io/v2/"
         private var apiManager: ApiManager? = null
-
+        // To ensure use of single instance only throughout the application's codebase
         val instance: ApiManager
             get() {
                 if (apiManager == null) {

@@ -8,9 +8,21 @@ import android.text.style.ForegroundColorSpan
 import android.widget.TextView
 import com.devansh.contextualcards.model.FormattedText
 
+/**
+ * Util class to handle all text formatting that needs to be done in the application's codebase.
+ */
 class TextFormatter {
 
     companion object {
+        /**
+         *
+         * @param formattedText an instance of [FormattedText] which specifies simple text and for the
+         * formatting details.
+         *@param textView instance of [TextView] into which the formatted/resultant text is
+         * to be set.
+         * @param callBackText a simple string which is passed as a back-up in case any issues
+         * are raised while parsing [FormattedText] instance.
+         */
         fun applyFormattedText(
             formattedText: FormattedText?,
             textView: TextView, callBackText: String?) {

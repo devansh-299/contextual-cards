@@ -1,10 +1,11 @@
 package com.devansh.contextualcards.util
 
-import android.content.Context
 import androidx.preference.PreferenceManager
 import com.devansh.contextualcards.ContextualCardApplication
 
-
+/**
+ * Helper class to manage storing and fetching data using Shared Preferences
+ */
 object PreferenceHelper {
 
     private const val PREF_KEY = "contextual_card_pref"

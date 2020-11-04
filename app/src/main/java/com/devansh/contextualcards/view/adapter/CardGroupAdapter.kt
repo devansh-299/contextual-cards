@@ -11,9 +11,14 @@ import com.devansh.contextualcards.R
 import com.devansh.contextualcards.model.Card
 import com.devansh.contextualcards.model.CardGroup
 
-
-class CardGroupAdapter(private val context: Context)
-    :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+/**
+ * The main [RecyclerView] which displays the list of [CardGroup] fetched from the API.
+ * Note that for each group a separate [RecyclerView] generated.
+ *
+ * @param context the calling/parent activity's [Context]
+ */
+class CardGroupAdapter(private val context: Context) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var groupData: ArrayList<CardGroup> = ArrayList()
 
@@ -37,7 +42,8 @@ class CardGroupAdapter(private val context: Context)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = cardAdapter
         }
-        holder.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+
+        holder.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 when (newState) {

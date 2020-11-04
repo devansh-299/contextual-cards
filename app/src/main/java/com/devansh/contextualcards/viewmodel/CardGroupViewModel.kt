@@ -19,14 +19,27 @@ import java.util.concurrent.TimeoutException
 class CardGroupViewModel : ViewModel() {
     private val tag = CardGroupViewModel::class.java.simpleName
     private val repository: Repository = Repository()
+
+    /**
+     * LiveData to keep track of the fetching process' status.
+     * True if successfully fetched, false otherwise.
+     */
     val successfulFetch: MutableLiveData<Boolean> = MutableLiveData()
 
+    // To store the fetched CardGroup list
     lateinit var cardGroups: List<CardGroup>
+
+    // To store any messages that may need to be displayed to the user
     lateinit var errorMessage: String
 
+    /**
+     * This method is used to make calls to API to fetch the list of [CardGroup]
+     * by calling methods exposed by [Repository]. All the fetching is being on a back-ground
+     * while only results are being observed/registered by the UI thread.
+     */
     fun fetchCards() {
         repository.getCardGroups()
-        .subscribeOn(Schedulers.newThread())
+            .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<List<CardGroup>>() {
                 override fun onNext(groups: List<CardGroup>) {
@@ -34,6 +47,7 @@ class CardGroupViewModel : ViewModel() {
                     successfulFetch.value = true
                     Log.d(tag, "successfully fetched")
                 }
+
                 override fun onError(throwable: Throwable) {
                     when (throwable) {
                         is IOException -> {
@@ -61,10 +75,13 @@ class CardGroupViewModel : ViewModel() {
             })
     }
 
+    /**
+     * This method is used to exclude any group whose id is stored in local storage
+     */
     // TODO: do this task in back-ground thread
     private fun getFilteredList(groups: List<CardGroup>): List<CardGroup> {
         val filteredList = ArrayList<CardGroup>()
-        for(group in groups) {
+        for (group in groups) {
             if (!PreferenceHelper.excludeGroup(group.id.toString())) {
                 filteredList.add(group)
             }

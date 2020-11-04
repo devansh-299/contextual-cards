@@ -12,17 +12,21 @@ data class CardGroup(
     @SerializedName("cards")
     val cardList: List<Card>,
     @SerializedName("is_scrollable")
-    val isScrollable: Boolean
-) {
+    val isScrollable: Boolean) {
+
     enum class DesignType {
         @SerializedName("HC1")
         SMALL_DISPLAY_CARD,
+
         @SerializedName("HC3")
         BIG_DISPLAY_CARD,
+
         @SerializedName("HC4")
         CENTER_CARD,
+
         @SerializedName("HC5")
         IMAGE_CARD,
+
         @SerializedName("HC6")
         SMALL_CARD_WITH_ARROW
     }
