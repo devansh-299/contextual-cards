@@ -2,16 +2,19 @@ package com.devansh.contextualcards.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.devansh.contextualcards.R
 import com.devansh.contextualcards.model.CardGroup
 import com.devansh.contextualcards.view.adapter.CardGroupAdapter
 import com.devansh.contextualcards.viewmodel.CardGroupViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.error_layout.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var cardGroupAdapter: CardGroupAdapter
     private val cardGroupViewModel by lazy {
@@ -24,18 +27,25 @@ class MainActivity : AppCompatActivity() {
 
         cardGroupAdapter = CardGroupAdapter(this)
 
-        // TODO("have another look at this")
         rv_card_groups.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = cardGroupAdapter
         }
-
-        cardGroupViewModel.fetchCards()
+        swipe_refresh.setOnRefreshListener(this)
         getData()
     }
 
-    private fun getData() {
+    override fun onResume() {
+        super.onResume()
+        onRefresh()
+    }
+
+    override fun onRefresh() {
         showLoadingScreen()
+        cardGroupViewModel.fetchCards()
+    }
+
+    private fun getData() {
         cardGroupViewModel.successfulFetch.observe(this, Observer { successful ->
             if (successful != null && successful is Boolean) {
                 if (successful) {
@@ -48,14 +58,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoadingScreen() {
-        // TODO("Not yet implemented")
+        swipe_refresh.isRefreshing = false
+        err_layout.visibility = View.GONE
+        rv_card_groups.visibility = View.GONE
+        shimmer_recycler_view.visibility = View.VISIBLE
     }
 
     private fun setData(cardGroups: List<CardGroup>) {
+        swipe_refresh.isRefreshing = false
+        err_layout.visibility = View.GONE
+        shimmer_recycler_view.visibility = View.GONE
+        rv_card_groups.visibility = View.VISIBLE
         cardGroupAdapter.setGroupData(cardGroups as ArrayList<CardGroup>)
     }
 
     private fun showErrorScreen(errorMessage: String) {
-        // TODO("set error message feature not added yet")
+        swipe_refresh.isRefreshing = false
+        shimmer_recycler_view.visibility = View.GONE
+        rv_card_groups.visibility = View.GONE
+        err_layout.visibility = View.VISIBLE
+        error_layout_tv_message.text = errorMessage
     }
+
 }

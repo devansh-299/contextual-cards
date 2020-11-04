@@ -40,7 +40,7 @@ class CardAdapter(private val designType: CardGroup.DesignType)
     }
 
     private fun showMenu(position: Int) {
-        if (cardData.isNotEmpty() && !cardData[0].swipeMenu) {
+        if (cardData.isNotEmpty() && !cardData[position].swipeMenu) {
             val menuCard = Card("menu_card")
             menuCard.swipeMenu = true
             cardData.add(position, menuCard)
@@ -48,7 +48,7 @@ class CardAdapter(private val designType: CardGroup.DesignType)
         }
     }
 
-    private fun hideMenu() {
+    fun hideMenu() {
         if (cardData.isNotEmpty() && cardData[0].swipeMenu) {
             cardData.removeAt(0)
             notifyDataSetChanged()

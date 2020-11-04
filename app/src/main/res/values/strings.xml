@@ -4,4 +4,8 @@
     <string name="remind_later">remind later</string>
     <string name="dismiss_now">dismiss now</string>
     <string name="fampay">fampay</string>
+    <string name="check_connection">Check Your Internet Connection!</string>
+    <string name="time_out">Time Out!</string>
+    <string name="cannot_connect_server">Error Occurred while contacting our servers</string>
+    <string name="error_occurred">Error Occurred</string>
 </resources>

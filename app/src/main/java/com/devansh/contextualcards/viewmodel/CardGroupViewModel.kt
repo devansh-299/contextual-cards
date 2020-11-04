@@ -3,6 +3,8 @@ package com.devansh.contextualcards.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.devansh.contextualcards.ContextualCardApplication
+import com.devansh.contextualcards.R
 import com.devansh.contextualcards.data.Repository
 import com.devansh.contextualcards.model.CardGroup
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -35,17 +37,21 @@ class CardGroupViewModel : ViewModel() {
                 override fun onError(throwable: Throwable) {
                     when (throwable) {
                         is IOException -> {
-                            errorMessage = "Check Your Internet Connection!"
+                            errorMessage = ContextualCardApplication
+                                .getContext().getString(R.string.check_connection)
                         }
                         is TimeoutException -> {
-                            errorMessage = "Time Out!"
+                            errorMessage = ContextualCardApplication
+                                .getContext().getString(R.string.time_out)
                         }
                         is HttpException -> {
-                            errorMessage = "Error Occurred while contacting our servers"
+                            errorMessage = ContextualCardApplication
+                                .getContext().getString(R.string.cannot_connect_server)
                         }
                         else -> {
                             throwable.message?.let { Log.e(tag, it) }
-                            errorMessage = "Error Occurred"
+                            errorMessage = ContextualCardApplication
+                                .getContext().getString(R.string.error_occurred)
                         }
                     }
                     successfulFetch.value = false

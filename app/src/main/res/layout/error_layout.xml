@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:padding="@dimen/value_10dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/value_100dp"
+        android:layout_height="@dimen/value_100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_error" />
+
+    <TextView
+        android:id="@+id/error_layout_tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorFamPay"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/value_20dp"
+        android:textSize="@dimen/value_25sp" />
+
+</LinearLayout>

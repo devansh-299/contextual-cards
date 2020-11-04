@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devansh.contextualcards.R
@@ -36,6 +37,16 @@ class CardGroupAdapter(private val context: Context)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = cardAdapter
         }
+        holder.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                when (newState) {
+                    AbsListView.OnScrollListener.SCROLL_STATE_FLING -> {
+                        cardAdapter.hideMenu()
+                    }
+                }
+            }
+        })
         cardAdapter.setCardData(groupData[position].cardList as ArrayList<Card>)
     }
 

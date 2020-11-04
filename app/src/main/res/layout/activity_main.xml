@@ -4,15 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorWindowBackground"
     tools:context=".view.activity.MainActivity"
     android:orientation="vertical">
 
     <include layout="@layout/actionbar_layout"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_card_groups"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include
+            android:id="@+id/err_layout"
+            layout="@layout/error_layout"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_card_groups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+            android:id="@+id/shimmer_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:shimmer_demo_angle="20"
+            app:shimmer_demo_child_count="10"
+            app:shimmer_demo_grid_child_count="2"
+            app:shimmer_demo_layout_manager_type="linear_vertical" />
+
+        </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
