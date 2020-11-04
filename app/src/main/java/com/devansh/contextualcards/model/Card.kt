@@ -19,5 +19,6 @@ data class Card(
     val ctaList: List<Cta>? = null,
     val icon: CardImage? = null,
     @SerializedName("bg_gradient")
-    val bgGradient: Gradient? = null
+    val bgGradient: Gradient? = null,
+    var swipeMenu: Boolean = false
 )

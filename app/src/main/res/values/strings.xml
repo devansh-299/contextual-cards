@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ContextualCards</string>
     <string name="action">Action</string>
+    <string name="remind_later">remind later</string>
+    <string name="dismiss_now">dismiss now</string>
 </resources>
