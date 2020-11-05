@@ -2,8 +2,8 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/white"/>
     <item
-        android:width="@dimen/value_100dp"
-        android:height="@dimen/value_100dp"
-        android:drawable="@drawable/logo_fampay"
+        android:width="@dimen/value_200dp"
+        android:height="@dimen/value_150dp"
+        android:drawable="@drawable/splash_image"
         android:gravity="center" />
 </layer-list>

@@ -5,6 +5,9 @@
     android:id="@+id/bdc_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_margin="@dimen/value_5dp"
     app:cardCornerRadius="@dimen/value_10dp">
 
@@ -41,7 +44,9 @@
                 android:id="@+id/bdc_bt_action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button_background"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:textAllCaps="false" />
         </androidx.cardview.widget.CardView>
 

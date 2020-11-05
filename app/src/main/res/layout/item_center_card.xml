@@ -48,6 +48,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginEnd="@dimen/value_20dp"
                 app:cardCornerRadius="@dimen/value_10dp">
 
@@ -62,6 +65,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_weight="1"
                 app:cardCornerRadius="@dimen/value_10dp">
 
